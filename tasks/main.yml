@@ -1,2 +1,10 @@
 ---
+- name: Log in to Jenkins CLI
+  when: jenkins_auth_params
+  command: >
+    java -jar {{ jenkins.cli_dest }}
+    -s http://localhost:8080
+    login {{ jenkins_auth_params }}
+
+# Add Jenkins repository
 - include: jenkins.yml tags=jenkins
